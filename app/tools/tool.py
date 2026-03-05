@@ -7,7 +7,7 @@ class CountryAPIError(Exception):
     pass
 
 def fetch_country_data(country_name: str) -> dict:
-    url = os.getenv("DATA_URL")
+    url = os.getenv("DATA_URL","https://restcountries.com/v3.1/name/{country_name}")
     url=url.format(country_name=country_name)
     try:
         response = requests.get(url, timeout=5)
