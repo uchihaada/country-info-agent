@@ -14,6 +14,12 @@ def intent_system_prompt() -> str:
     Return ONLY valid JSON with keys:
     country
     requested_fields
+    
+    Rules:
+    - If the user mentions a country but does NOT request specific fields,
+    return an empty list for requested_fields.
+    - Do NOT guess fields.
+    - Only include fields that are explicitly requested by the user.
     """
 
 def intent_user_prompt(question: str) -> str:
@@ -26,15 +32,12 @@ def answer_system_prompt() -> str:
     return """
     You are an AI assistant that answers questions about countries.
 
-    You will be given:
+    You will receive country data from an API.
 
-    1. Country data from a reliable API
-    2. The fields requested by the user
+    Use ONLY the provided data.
 
-    Use ONLY the provided country data to answer.
-    Do not make up information.
-
-    If the requested field does not exist in the data, say that the information is not available.
+    Return ONLY the final answer to the user.
+    Do not mention internal fields or reasoning.
     """
 
 def answer_user_prompt(question: str, requested_fields, country_data) -> str:
@@ -42,11 +45,9 @@ def answer_user_prompt(question: str, requested_fields, country_data) -> str:
     User Question:
     {question}
 
-    Requested Fields:
-    {requested_fields}
-
     Country Data:
     {country_data}
 
-    Provide a clear and concise answer.
+    Answer the question directly using the provided country data.
+    Do not mention requested fields.
     """

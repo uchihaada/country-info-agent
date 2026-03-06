@@ -78,6 +78,25 @@ class CountryDataParser(CountryBase):
         }
 
         return cls(**normalized_data)
+    
 
-    def to_dict(self):
-        return self.model_dump()
+    def resolve_fields(self, requested_fields: List[str]) -> Dict:
+        resolved = {}
+
+        raw_data = self.raw_data or {}
+
+        for field in requested_fields:
+
+            # 1️⃣ check structured fields
+            if hasattr(self, field) and getattr(self, field) is not None:
+                resolved[field] = getattr(self, field)
+
+            # 2️⃣ fallback to raw_data
+            elif field in raw_data:
+                resolved[field] = raw_data.get(field)
+
+            # 3️⃣ field not found
+            else:
+                resolved[field] = "Information not available"
+
+        return resolved

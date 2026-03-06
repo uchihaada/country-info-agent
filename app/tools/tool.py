@@ -26,4 +26,4 @@ def fetch_country_data(country_name: str) -> dict:
     country_obj = CountryDataParser.from_api_response(country_name, api_response)
 
     # Convert to dictionary
-    return country_obj.to_dict()
+    return country_obj
