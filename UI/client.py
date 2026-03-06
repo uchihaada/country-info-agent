@@ -22,7 +22,7 @@ with st.sidebar:
 
     if st.button("🔎 Check API"):
         try:
-            r = requests.get("http://localhost:8000/docs")
+            r = requests.get("https://country-info-agent-t3ds.onrender.com")
             if r.status_code == 200:
                 st.success("API is running")
             else:
