@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "https://country-info-agent-t3ds.onrender.com"
+API_URL = "https://country-info-agent-t3ds.onrender.com/ask"
 
 st.set_page_config(
     page_title="Country Info AI Agent",
@@ -22,7 +22,7 @@ with st.sidebar:
 
     if st.button("🔎 Check API"):
         try:
-            r = requests.get("https://country-info-agent-t3ds.onrender.com")
+            r = requests.get("https://country-info-agent-t3ds.onrender.com/docs")
             if r.status_code == 200:
                 st.success("API is running")
             else:
