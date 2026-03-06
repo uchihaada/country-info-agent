@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://localhost:8000/ask"
+API_URL = "https://country-info-agent-t3ds.onrender.com"
 
 st.set_page_config(
     page_title="Country Info AI Agent",
