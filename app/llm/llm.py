@@ -9,7 +9,7 @@ def get_llm():
     
     try:
         
-        api_key=os.getenv("API_KEY","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")
+        api_key=os.getenv("API_KEY")
         
         if not api_key:
             raise ValueError("api key not found")
